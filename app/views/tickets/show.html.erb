@@ -1,0 +1,15 @@
+<h3><%= @ticket.name_field %></h3>
+
+<pre id="result">
+  <%=
+    "\n" + JSON.pretty_generate(
+      @ticket.attributes.merge(
+        Hash[
+          Ticket.has_many_attributes.map do |attribute|
+            [attribute, @ticket.send(attribute).pluck(:name)]
+          end
+        ]
+      )
+    )
+  %>
+</pre>

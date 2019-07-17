@@ -1,0 +1,11 @@
+<table>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to("#{user.name_field} (#{user.id})", user, class: 'result') %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

@@ -1,0 +1,15 @@
+<h3><%= @organization.name_field %></h3>
+
+<pre id="result">
+  <%=
+    "\n" + JSON.pretty_generate(
+      @organization.attributes.merge(
+        Hash[
+          Organization.has_many_attributes.map do |attribute|
+            [attribute, @organization.send(attribute).pluck(:name)]
+          end
+        ]
+      )
+    )
+  %>
+</pre>

@@ -1,0 +1,11 @@
+<table>
+  <tbody>
+    <% @organizations.each do |organization| %>
+      <tr>
+        <td><%= link_to("#{organization.name_field} (#{organization.id})", organization, class: 'result') %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

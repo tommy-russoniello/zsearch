@@ -5,11 +5,30 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag('application', media: 'all', 'data-turbolinks-track': 'reload') %>
+    <%= javascript_include_tag('application', 'data-turbolinks-track': 'reload') %>
+    <%= favicon_link_tag asset_path('favicon.ico') %>
   </head>
-
   <body>
+
+    <ul>
+      <% %w[organizations users tickets].each do |entity| %>
+        <li>
+          <div class="dropdown<%= ' current_dropbutton' if controller_name == entity %>">
+            <button class="dropbutton"><%= entity.titleize %></button>
+            <div class="dropdown-content">
+              <a href="<%= send("#{entity}_path") %>">List</a>
+              <a href="<%= send("#{entity.singularize}_search_path") %>">Search</a>
+            </div>
+          </div>
+        </li>
+      <% end %>
+      <li id="logo"><a href="https://github.com/tommy-russoniello/zsearch">Zsearch</a>
+    </ul>
+
+    <br>
+
     <%= yield %>
+
   </body>
 </html>

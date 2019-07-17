@@ -1,0 +1,15 @@
+<h3><%= @user.name_field %></h3>
+
+<pre id="result">
+  <%=
+    "\n" + JSON.pretty_generate(
+      @user.attributes.merge(
+        Hash[
+          User.has_many_attributes.map do |attribute|
+            [attribute, @user.send(attribute).pluck(:name)]
+          end
+        ]
+      )
+    )
+  %>
+</pre>

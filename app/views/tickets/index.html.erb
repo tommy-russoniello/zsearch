@@ -1,0 +1,11 @@
+<table>
+  <tbody>
+    <% @tickets.each do |ticket| %>
+      <tr>
+        <td><%= link_to(ticket.name_field, ticket, class: 'result') %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
